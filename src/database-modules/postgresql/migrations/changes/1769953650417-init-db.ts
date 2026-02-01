@@ -21,10 +21,9 @@ export class InitDB1769953650417 implements MigrationInterface {
                                                amount NUMERIC NOT NULL,
                                                status payment_status NOT NULL,
                                                currency currency_type NOT NULL,
-                                               date TIMESTAMP WITH TIME ZONE NOT NULL,
+                                               created_at TIMESTAMP WITH TIME ZONE NOT NULL,
                                                payment_method payment_method NOT NULL,
                                                yookassa_payment_id UUID,
-                                               idempotency_key UUID NOT NULL UNIQUE,
                                                "subscriptionId" UUID,
                                                FOREIGN KEY ("subscriptionId") REFERENCES subscription(id) ON DELETE CASCADE
         );
