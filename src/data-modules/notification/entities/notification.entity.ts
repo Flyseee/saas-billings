@@ -1,18 +1,17 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { WebhookEventType } from '../../enums/webhook-event-type.enum';
+import { Payment } from '../../payment/entities/payment.entity';
 
 @Entity({ name: 'notification' })
 export class Notification {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 
-  @Column()
-  type: string;
-
-  @Column()
+  @Column({type:'enum', enum:WebhookEventType, name: 'event'})
   event: string;
 
-  @Column('json')
-  object: object;
+  @ManyToOne(() => Payment, { onDelete: 'CASCADE' })
+  payment: Payment;
 
   @CreateDateColumn({ type: 'timestamp with time zone', name: 'created_at' })
   createdAt: Date;
