@@ -25,15 +25,12 @@ export class Payment {
   })
   currency: CurrencyType;
 
-  @Column({ type: 'timestamp with time zone', name: 'date' })
-  date: Date;
+  @Column({ type: 'timestamp with time zone', name: 'created_at' })
+  createdAt: Date;
 
   @Column({ type: 'enum', enum: PaymentMethod, name: 'payment_method' })
   paymentMethod: PaymentMethod;
 
   @Column('uuid', { name: 'yookassa_payment_id', nullable: true })
   yookassaPaymentId: string;
-
-  @Column('uuid', { name: 'idempotency_key', unique: true })
-  idempotencyKey: string;
 }
