@@ -14,7 +14,7 @@ export class FuncPaymentService {
       amount: createPaymentDto.amount.value,
       status: createPaymentDto.status,
       currency: createPaymentDto.amount.currency,
-      createdAt: new Date(),
+      createdAt: createPaymentDto.created_at,
       paymentMethod: createPaymentDto.payment_method.type,
       yookassaPaymentId: createPaymentDto.id
     }

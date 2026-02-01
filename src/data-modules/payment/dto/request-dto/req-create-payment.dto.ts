@@ -1,14 +1,15 @@
 import {
   IsDate,
   IsEnum,
-  IsNotEmpty,
+  IsNotEmpty, IsNotEmptyObject,
   IsNumber,
   IsObject,
-  IsUUID,
+  IsUUID, ValidateNested,
 } from 'class-validator';
 import { PaymentStatus } from '../../../enums/payment-status.enum';
 import { CurrencyType } from '../../../enums/currency-type.enum';
 import { PaymentMethod } from '../../../enums/payment-method.enum';
+import { Type } from 'class-transformer';
 
 class Amount {
   @IsNotEmpty()
@@ -27,23 +28,28 @@ class Payment {
 }
 
 export class ReqCreatePaymentDto {
-  @IsNotEmpty()
   @IsUUID()
   id: string;
 
-  @IsNotEmpty()
   @IsEnum(PaymentStatus)
   status: PaymentStatus;
 
-  @IsNotEmpty()
+  @IsNotEmptyObject()
   @IsObject()
+  @ValidateNested()
+  @Type(() => Amount)
   amount: Amount;
 
-  @IsNotEmpty()
+  @IsDate()
+  @Type(() => Date)
+  created_at: Date;
+
+  @IsNotEmptyObject()
   @IsObject()
+  @ValidateNested()
+  @Type(() => Payment)
   payment_method: Payment;
 
-  @IsNotEmpty()
   @IsUUID()
   subscription_id: string;
 }
