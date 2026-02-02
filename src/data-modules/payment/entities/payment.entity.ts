@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Subscription } from '../../subscription/entities/subscription.entity';
 import { PaymentStatus } from '../../enums/payment-status.enum';
 import { CurrencyType } from '../../enums/currency-type.enum';
@@ -34,4 +40,10 @@ export class Payment {
 
   @Column('uuid', { name: 'yookassa_payment_id', nullable: true })
   yookassaPaymentId: string;
+
+  @Column({ type: 'varchar', length: 255, name: 'description' })
+  description: string;
+
+  @Column({ type: 'varchar', length: 255,name: 'confirmation_url' })
+  confirmationUrl: string;
 }

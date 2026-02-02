@@ -11,7 +11,7 @@ export class FuncPaymentController {
   @HttpCode(HttpStatus.CREATED)
   async create(
     @Body() createPaymentDto: ReqCreatePaymentDto,
-  ): Promise<ResCreatePaymentDto> {
+  ): Promise<ResCreatePaymentDto | undefined> {
     return this.funcPaymentService.create(createPaymentDto);
   }
 }

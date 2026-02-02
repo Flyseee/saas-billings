@@ -12,4 +12,5 @@ export class ResCreatePaymentDto {
   createdAt: Date;
   paymentMethod: PaymentMethod;
   yookassaPaymentId: string;
+  confirmationUrl: string;
 }

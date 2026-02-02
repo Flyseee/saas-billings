@@ -25,6 +25,8 @@ export class InitDB1769953650417 implements MigrationInterface {
                                                payment_method payment_method NOT NULL,
                                                yookassa_payment_id UUID,
                                                subscription_id UUID,
+                                               description varchar(255),
+                                               confirmation_url varchar(255),
                                                FOREIGN KEY (subscription_id) REFERENCES subscription(id) ON DELETE CASCADE
         );
         CREATE TABLE IF NOT EXISTS notification (

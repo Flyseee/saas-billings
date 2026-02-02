@@ -1,65 +1,30 @@
 import {
-  IsDate,
   IsEnum,
   IsNotEmpty,
-  IsNotEmptyObject,
   IsNumber,
-  IsObject,
+  IsString,
   IsUUID,
-  ValidateNested,
 } from 'class-validator';
-import { PaymentStatus } from '../../../enums/payment-status.enum';
 import { CurrencyType } from '../../../enums/currency-type.enum';
 import { PaymentMethod } from '../../../enums/payment-method.enum';
-import { Type } from 'class-transformer';
 
-class Amount {
-  @IsNotEmpty()
+export class ReqCreatePaymentDto {
+  @IsUUID()
+  subscriptionId: string;
+
   @IsNumber()
-  value: number;
+  @IsNotEmpty()
+  amount: number;
 
   @IsNotEmpty()
   @IsEnum(CurrencyType)
   currency: CurrencyType;
-}
 
-class PaymentMethodInfo {
   @IsNotEmpty()
   @IsEnum(PaymentMethod)
-  type: PaymentMethod;
-}
+  paymentMethod: PaymentMethod;
 
-export class PaymentInfo {
-  @IsUUID()
-  id: string;
-
-  @IsEnum(PaymentStatus)
-  status: PaymentStatus;
-
-  @IsNotEmptyObject()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => Amount)
-  amount: Amount;
-
-  @IsDate()
-  @Type(() => Date)
-  created_at: Date;
-
-  @IsNotEmptyObject()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => PaymentMethodInfo)
-  payment_method: PaymentMethodInfo;
-}
-
-export class ReqCreatePaymentDto {
-  @IsNotEmptyObject()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => PaymentInfo)
-  payment: PaymentInfo;
-
-  @IsUUID()
-  subscription_id: string;
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 }
