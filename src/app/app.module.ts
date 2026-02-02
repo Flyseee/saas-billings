@@ -3,6 +3,7 @@ import { PostgresqlModule } from '../database-modules/postgresql/postgresql.modu
 import { ConfigModule } from '@nestjs/config';
 import { FuncPaymentModule } from '../func-modules/func-payment/func-payment.module';
 import { FuncNotificationModule } from '../func-modules/func-notification/func-notification.module';
+import { FuncSubscriptionModule } from '../func-modules/func-subscription/func-subscription.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { FuncNotificationModule } from '../func-modules/func-notification/func-n
     PostgresqlModule,
     FuncPaymentModule,
     FuncNotificationModule,
+    FuncSubscriptionModule
   ],
   controllers: [],
   providers: [],
