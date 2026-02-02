@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { NotificationService } from '../../data-modules/notification/notification.service';
 import { ReqHandleNotificationDto } from '../../data-modules/notification/dto/request-dto/req-handle-notification.dto';
 import { PaymentService } from '../../data-modules/payment/payment.service';
@@ -12,10 +12,10 @@ export class FuncNotificationService {
   ) {}
 
   async handleNotification(
-    reqHandleNotificationDto: ReqHandleNotificationDto,
+    handleNotificationDto: ReqHandleNotificationDto,
   ): Promise<void> {
     const [eventTypeSection, status] =
-      reqHandleNotificationDto.event.split('.');
+      handleNotificationDto.event.split('.');
     if (eventTypeSection === 'payment') {
       const paymentStatus = status as PaymentStatus;
 
@@ -25,7 +25,7 @@ export class FuncNotificationService {
 
       try {
         await this.paymentService.update({
-          id: reqHandleNotificationDto.object.id,
+          id: handleNotificationDto.object.id,
           status: paymentStatus,
         });
       } catch (error) {
@@ -43,6 +43,6 @@ export class FuncNotificationService {
       }
     }
 
-    await this.notificationService.handleNotification(reqHandleNotificationDto);
+    await this.notificationService.handleNotification(handleNotificationDto);
   }
 }

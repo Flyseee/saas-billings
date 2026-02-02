@@ -11,10 +11,10 @@ export class FuncNotificationController {
   @Post('notification')
   @HttpCode(HttpStatus.OK)
   async handleNotification(
-    @Body() reqHandleNotificationDto: ReqHandleNotificationDto
+    @Body() handleNotificationDto: ReqHandleNotificationDto
   ) {
     await this.funcNotificationService.handleNotification(
-      reqHandleNotificationDto,
+      handleNotificationDto,
     );
   }
 }

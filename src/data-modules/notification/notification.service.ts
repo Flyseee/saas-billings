@@ -10,9 +10,9 @@ export class NotificationService {
     private notificationRepository: Repository<Notification>,
   ) {}
 
-  async handleNotification(reqHandleNotificationDto: ReqHandleNotificationDto): Promise<Notification> {
+  async handleNotification(handleNotificationDto: ReqHandleNotificationDto): Promise<Notification> {
     const entity: Notification = this.notificationRepository.create(
-      reqHandleNotificationDto,
+      handleNotificationDto,
     );
     return await this.notificationRepository.save(entity);
   }

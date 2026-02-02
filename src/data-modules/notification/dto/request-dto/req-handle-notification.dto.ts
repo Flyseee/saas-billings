@@ -1,4 +1,11 @@
-import { IsDate, IsEnum, IsNotEmpty, IsNotEmptyObject, IsObject, IsUUID, ValidateNested } from 'class-validator';
+import {
+  IsDate,
+  IsEnum,
+  IsNotEmptyObject,
+  IsObject,
+  IsUUID,
+  ValidateNested,
+} from 'class-validator';
 import { WebhookEventType } from '../../../enums/webhook-event-type.enum';
 import { Type } from 'class-transformer';
 
