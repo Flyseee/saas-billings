@@ -26,12 +26,12 @@ export class Subscription {
     name: 'start_date',
     nullable: true,
   })
-  startDate: Date;
+  startDate: Date | null;
 
   @Column({
     type: 'timestamp with time zone',
     name: 'end_date',
     nullable: true,
   })
-  endDate: Date;
+  endDate: Date | null;
 }
