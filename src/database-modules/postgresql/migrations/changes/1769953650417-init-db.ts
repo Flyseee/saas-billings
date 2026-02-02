@@ -6,7 +6,7 @@ export class InitDB1769953650417 implements MigrationInterface {
         CREATE TYPE payment_method AS ENUM ('sberbank_credit', 'alfa_click', 'phone_balance', 'bank_card', 'pay_in_installments', 'cash', 'pay_parts', 'spb', 'sberbank_business_online', 'electronic_certificate', 'yoomoney', 'apple_pay', 'google_pay', 'qiwi_wallet', 'sberpay', 't_pay', 'wechat', 'webmoney');
         CREATE TYPE payment_status AS ENUM ('pending', 'waiting_for_capture', 'succeeded', 'canceled');
         CREATE TYPE subscription_plan AS ENUM ('free', 'basic', 'standard', 'premium');
-        CREATE TYPE webhook_event_type AS ENUM ('payment.waiting_for_capture', 'payment.succeeded', 'payment.canceled', 'payment_method.active', 'refund.succeeded', 'payout.succeeded', 'payout.canceled', 'deal.closed'); 
+        CREATE TYPE webhook_event_type AS ENUM ('payment.waiting_for_capture', 'payment.succeeded', 'payment.canceled'); 
     `);
     await queryRunner.query(`
         CREATE TABLE IF NOT EXISTS subscription (
