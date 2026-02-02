@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Subscription } from '../../subscription/entities/subscription.entity';
 import { PaymentStatus } from '../../enums/payment-status.enum';
 import { CurrencyType } from '../../enums/currency-type.enum';
@@ -10,6 +10,7 @@ export class Payment {
   id: string;
 
   @ManyToOne(() => Subscription, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'subscription_id' })
   subscription: Subscription;
 
   @Column({ type: 'decimal', name: 'amount' })

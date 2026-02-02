@@ -21,13 +21,13 @@ class Amount {
   currency: CurrencyType;
 }
 
-class Payment {
+class PaymentMethodInfo {
   @IsNotEmpty()
   @IsEnum(PaymentMethod)
   type: PaymentMethod;
 }
 
-export class ReqCreatePaymentDto {
+export class PaymentInfo {
   @IsUUID()
   id: string;
 
@@ -47,8 +47,16 @@ export class ReqCreatePaymentDto {
   @IsNotEmptyObject()
   @IsObject()
   @ValidateNested()
-  @Type(() => Payment)
-  payment_method: Payment;
+  @Type(() => PaymentMethodInfo)
+  payment_method: PaymentMethodInfo;
+}
+
+export class ReqCreatePaymentDto {
+  @IsNotEmptyObject()
+  @IsObject()
+  @ValidateNested()
+  @Type(() => PaymentInfo)
+  payment: PaymentInfo;
 
   @IsUUID()
   subscription_id: string;
