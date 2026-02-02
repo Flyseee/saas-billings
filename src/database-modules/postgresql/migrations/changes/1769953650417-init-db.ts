@@ -14,7 +14,7 @@ export class InitDB1769953650417 implements MigrationInterface {
                                                     plan subscription_plan DEFAULT 'free'::subscription_plan NOT NULL,
                                                     start_date TIMESTAMP WITH TIME ZONE,
                                                     end_date TIMESTAMP WITH TIME ZONE,
-                                                    "userId" UUID
+                                                    user_id UUID
         );
         CREATE TABLE IF NOT EXISTS payment (
                                                id UUID DEFAULT uuid_generate_v4() NOT NULL PRIMARY KEY,
@@ -24,16 +24,21 @@ export class InitDB1769953650417 implements MigrationInterface {
                                                created_at TIMESTAMP WITH TIME ZONE NOT NULL,
                                                payment_method payment_method NOT NULL,
                                                yookassa_payment_id UUID,
-                                               "subscriptionId" UUID,
-                                               FOREIGN KEY ("subscriptionId") REFERENCES subscription(id) ON DELETE CASCADE
+                                               subscription_id UUID,
+                                               FOREIGN KEY (subscription_id) REFERENCES subscription(id) ON DELETE CASCADE
         );
         CREATE TABLE IF NOT EXISTS notification (
                                                     id UUID PRIMARY KEY DEFAULT uuid_generate_v4() NOT NULL,
                                                     event webhook_event_type NOT NULL,
-                                                    "paymentId" UUID,
-                                                    FOREIGN KEY ("paymentId") REFERENCES payment(id) ON DELETE CASCADE,
+                                                    payment_id UUID,
+                                                    FOREIGN KEY (payment_id) REFERENCES payment(id) ON DELETE CASCADE,
                                                     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
         );
+    `);
+    await queryRunner.query(`
+        INSERT INTO subscription (id, plan, user_id) VALUES
+            ('123e4567-e89b-12d3-a456-426614174000', 'free', '123e4567-e89b-12d3-a456-426614174002'),
+            (uuid_generate_v4(), 'free', '123e4567-e89b-12d3-a456-426614174003');
     `);
   }
   public async down(queryRunner: QueryRunner): Promise<void> {
