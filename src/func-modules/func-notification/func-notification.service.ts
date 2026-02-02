@@ -14,8 +14,7 @@ export class FuncNotificationService {
   async handleNotification(
     handleNotificationDto: ReqHandleNotificationDto,
   ): Promise<void> {
-    const [eventTypeSection, status] =
-      handleNotificationDto.event.split('.');
+    const [eventTypeSection, status] = handleNotificationDto.event.split('.');
     if (eventTypeSection === 'payment') {
       const paymentStatus = status as PaymentStatus;
 

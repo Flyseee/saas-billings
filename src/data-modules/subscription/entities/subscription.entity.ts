@@ -1,8 +1,4 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { SubscriptionPlan } from '../../enums/subscription-plan.enum';
 
 @Entity({ name: 'subscription' })

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+} from '@nestjs/common';
 import { FuncSubscriptionService } from './func-subscription.service';
 import { Subscription } from '../../data-modules/subscription/entities/subscription.entity';
 import { ReqUpdateSubscriptionDto } from '../../data-modules/subscription/dto/request-dto/req-update-subscription.dto';

@@ -1,9 +1,4 @@
-import {
-  IsDate,
-  IsEnum,
-  IsNotEmpty,
-  IsUUID,
-} from 'class-validator';
+import { IsDate, IsEnum, IsNotEmpty, IsUUID } from 'class-validator';
 import { SubscriptionPlan } from '../../../enums/subscription-plan.enum';
 import { Type } from 'class-transformer';
 

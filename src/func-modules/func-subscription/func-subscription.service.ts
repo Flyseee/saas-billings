@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SubscriptionService } from '../../data-modules/subscription/subscription.service';
 import { Subscription } from '../../data-modules/subscription/entities/subscription.entity';
 import { ReqUpdateSubscriptionDto } from '../../data-modules/subscription/dto/request-dto/req-update-subscription.dto';
@@ -11,7 +11,9 @@ export class FuncSubscriptionService {
     return this.subscriptionService.get(id);
   }
 
-  update(updateSubscriptionDto: ReqUpdateSubscriptionDto): Promise<Subscription> {
+  update(
+    updateSubscriptionDto: ReqUpdateSubscriptionDto,
+  ): Promise<Subscription> {
     return this.subscriptionService.update(updateSubscriptionDto);
   }
 }

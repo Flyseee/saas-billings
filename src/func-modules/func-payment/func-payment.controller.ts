@@ -9,7 +9,9 @@ export class FuncPaymentController {
 
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() createPaymentDto: ReqCreatePaymentDto): Promise<ResCreatePaymentDto>  {
+  async create(
+    @Body() createPaymentDto: ReqCreatePaymentDto,
+  ): Promise<ResCreatePaymentDto> {
     return this.funcPaymentService.create(createPaymentDto);
   }
 }

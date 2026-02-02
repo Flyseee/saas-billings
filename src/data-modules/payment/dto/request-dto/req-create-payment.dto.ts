@@ -1,10 +1,12 @@
 import {
   IsDate,
   IsEnum,
-  IsNotEmpty, IsNotEmptyObject,
+  IsNotEmpty,
+  IsNotEmptyObject,
   IsNumber,
   IsObject,
-  IsUUID, ValidateNested,
+  IsUUID,
+  ValidateNested,
 } from 'class-validator';
 import { PaymentStatus } from '../../../enums/payment-status.enum';
 import { CurrencyType } from '../../../enums/currency-type.enum';

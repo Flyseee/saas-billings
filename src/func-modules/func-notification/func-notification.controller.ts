@@ -11,7 +11,7 @@ export class FuncNotificationController {
   @Post('notification')
   @HttpCode(HttpStatus.OK)
   async handleNotification(
-    @Body() handleNotificationDto: ReqHandleNotificationDto
+    @Body() handleNotificationDto: ReqHandleNotificationDto,
   ) {
     await this.funcNotificationService.handleNotification(
       handleNotificationDto,
