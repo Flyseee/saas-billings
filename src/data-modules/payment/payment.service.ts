@@ -1,9 +1,10 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Payment } from './entities/payment.entity';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 import { CreatePaymentAg } from './aggregation-object/create-payment.ag';
 import { ReqUpdatePaymentDto } from './dto/request-dto/req-update-payment.dto';
 import { PaymentStatus } from '../enums/payment-status.enum';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class PaymentService {
@@ -42,5 +43,13 @@ export class PaymentService {
   ): boolean {
     const statusOrder = Object.values(PaymentStatus);
     return statusOrder.indexOf(newStatus) > statusOrder.indexOf(currentStatus);
+  }
+
+  @Cron('0 0 * * *')
+  async deleteOldPayments() {
+    const dateThreshold = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    await this.paymentRepository.delete({
+      createdAt: LessThan(dateThreshold),
+    });
   }
 }
