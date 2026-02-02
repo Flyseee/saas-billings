@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { FuncPaymentModule } from '../func-modules/func-payment/func-payment.module';
 import { FuncNotificationModule } from '../func-modules/func-notification/func-notification.module';
 import { FuncSubscriptionModule } from '../func-modules/func-subscription/func-subscription.module';
+import { WebhookModule } from '../func-modules/webhook/webhook.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { FuncSubscriptionModule } from '../func-modules/func-subscription/func-s
     PostgresqlModule,
     FuncPaymentModule,
     FuncNotificationModule,
-    FuncSubscriptionModule
+    FuncSubscriptionModule,
+    WebhookModule,
   ],
   controllers: [],
   providers: [],
