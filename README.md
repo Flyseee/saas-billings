@@ -41,7 +41,7 @@ SaaS Billing Application — это приложение для управлен
 ### Установка зависимостей
 1. Клонируйте репозиторий:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Flyseee/saas-billings
    cd saas-billings
    ```
 
